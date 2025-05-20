@@ -27,9 +27,15 @@ class Edit extends Component
         ];
     }
 
-    public function save(){
-        $validated = $this->validate();
-        $this->client->update($validated);
+    public function update(){
+        
+        $this->validate();
+
+        $this->client->name = $this->name;
+        $this->client->email = $this->email;
+        $this->client->phone = $this->phone;
+        $this->client->save();
+
         session()->flash('success', 'Cliente actualizado exitosamente.');
         $this->dispatch('show-success-message');
 

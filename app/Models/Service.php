@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -18,7 +19,15 @@ class Service extends Model
         'price',
         'category_id',
         'image',
+        'status'
     ];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? Storage::url($this->image)
+            : asset('assets/images/default-service.png'); // Imagen por defecto si no hay imagen
+    }
 
     public function category(): BelongsTo
     {

@@ -1,5 +1,5 @@
 <div class="max-w-2xl mx-auto">
-    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-700 p-6">
+    <div class="bg-white dark:bg-gray-700/30 rounded-xl shadow-sm border border-neutral-200 dark:border-neutral-700 p-6">
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
                 {{ __('Edit Client') }}
@@ -18,7 +18,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nombre <span class="text-red-500">*</span></label>
                 <input type="text" wire:model.defer="name"
-                    class="w-full rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-gray-700 px-4 py-2 text-gray-900 dark:text-white">
+                    class="w-full rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-gray-700/30 px-4 py-2 text-gray-900 dark:text-white">
                 @error('name') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
@@ -26,7 +26,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email <span class="text-red-500">*</span></label>
                 <input type="email" wire:model.defer="email"
-                    class="w-full rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-gray-700 px-4 py-2 text-gray-900 dark:text-white">
+                    class="w-full rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-gray-700/30 px-4 py-2 text-gray-900 dark:text-white">
                 @error('email') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
@@ -34,7 +34,7 @@
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Teléfono</label>
                 <input type="text" wire:model.defer="phone"
-                    class="w-full rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-gray-700 px-4 py-2 text-gray-900 dark:text-white">
+                    class="w-full rounded-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-gray-700/30 px-4 py-2 text-gray-900 dark:text-white">
                 @error('phone') <p class="text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
@@ -45,7 +45,7 @@
                      {{ __('Cancel') }}
                 </a>
                 <button type="submit" wire:loading.attr="disabled"
-                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50">
+                    class="px-4 py-2 bg-amber-500 text-white rounded hover:bg-amber-600 disabled:opacity-50 cursor-pointer">
                      {{ __('Update') }}
                 </button>
             </div>

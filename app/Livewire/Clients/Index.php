@@ -28,9 +28,17 @@ class Index extends Component
     public function changeStatus($clientId)
     {
         $client = Client::findOrFail($clientId);
-        $client->update(['status' => !$client->status]);
+        $client->status = !$client->status;
 
-        session()->flash('message', 'Estado del cliente actualizado correctamente.');
+        if ($client->save()) {
+            $message = $client->status
+                ? 'El cliente ha sido activado correctamente.'
+                : 'El cliente ha sido desactivado correctamente.';
+
+            session()->flash('success', $message);
+        } else {
+            session()->flash('error', 'No se pudo actualizar el estado del cliente.');
+        }
     }
 
     public function deleteClient(Client $client)
@@ -44,10 +52,10 @@ class Index extends Component
         return view('livewire.clients.index', [
             'clients' => Client::query()
                 ->when($this->search, function ($query) {
-                    $query->where(function($q) {
-                        $q->where('name', 'like', '%'.$this->search.'%')
-                          ->orWhere('email', 'like', '%'.$this->search.'%')
-                          ->orWhere('phone', 'like', '%'.$this->search.'%');
+                    $query->where(function ($q) {
+                        $q->where('name', 'like', '%' . $this->search . '%')
+                            ->orWhere('email', 'like', '%' . $this->search . '%')
+                            ->orWhere('phone', 'like', '%' . $this->search . '%');
                     });
                 })
                 ->when($this->statusFilter === 'active', fn($q) => $q->where('status', true))

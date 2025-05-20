@@ -12,23 +12,15 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Platform')" class="grid">
+                <flux:navlist.group :heading="__('Options')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="user" :href="route('clients.index')" :current="request()->routeIs('clients.index')" wire:navigate>{{ __('Clients') }}</flux:navlist.item>
+                    <flux:navlist.item icon="swatch" :href="route('services.index')" :current="request()->routeIs('services.index')" wire:navigate>{{ __('Services') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />
 
-            <flux:navlist variant="outline">
-                <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                {{ __('Repository') }}
-                </flux:navlist.item>
-
-                <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                {{ __('Documentation') }}
-                </flux:navlist.item>
-            </flux:navlist>
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="bottom" align="start">
@@ -129,5 +121,23 @@
         {{ $slot }}
 
         @fluxScripts
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const input = document.getElementById('priceInput');
+
+                if (!input) return;
+
+                input.addEventListener('input', function () {
+                    let rawValue = input.value.replace(/\./g, '').replace(/\D/g, '');
+                    if (rawValue === '') rawValue = '0';
+
+                    const formatted = new Intl.NumberFormat('es-CO').format(rawValue);
+                    input.value = formatted;
+
+                    // Emitimos un evento a Livewire para que guarde el valor limpio
+                    Livewire.dispatch('priceUpdated', { value: rawValue });
+                });
+            });
+        </script>
     </body>
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+    
     <head>
         @include('partials.head')
     </head>
@@ -118,6 +119,7 @@
         </flux:sidebar>
 
         {{ $slot }}
+<script src="https://unpkg.com/alpinejs" defer></script>
 
         @fluxScripts
     </body>

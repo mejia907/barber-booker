@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-use App\Livewire\Clients\Index;
-use App\Livewire\Clients\Create;
-use App\Livewire\Clients\Edit;
+use App\Livewire\Clients\{Index as ClientsIndex, Create as ClientsCreate, Edit as ClientsEdit};
+use App\Livewire\Services\{Index as ServicesIndex, Create as ServicesCreate, Edit as ServicesEdit};
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,9 +21,19 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 
-    Route::get('/clients', Index::class)->name('clients.index');
-    Route::get('/clients/create', Create::class)->name('clients.create');
-    Route::get('/clients/edit/{client}', Edit::class)->name('clients.edit');
+    // Módulo de Clientes
+    Route::prefix('clients')->name('clients.')->group(function () {
+        Route::get('/', ClientsIndex::class)->name('index');
+        Route::get('/create', ClientsCreate::class)->name('create');
+        Route::get('/edit/{client}', ClientsEdit::class)->name('edit');
+    });
+
+    // Módulo de Servicios
+    Route::prefix('services')->name('services.')->group(function () {
+        Route::get('/', ServicesIndex::class)->name('index');
+        Route::get('/create', ServicesCreate::class)->name('create');
+        Route::get('/edit/{service}', ServicesEdit::class)->name('edit');
+    });
 });
 
 

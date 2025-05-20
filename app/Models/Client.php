@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\URL;
 class Client extends Model
 {
     protected $table = 'clients';
-    protected $fillable = ['name', 'email', 'phone', 'status'];
+    
+    protected $fillable = [
+        'name', 
+        'email', 
+        'phone', 
+        'status'
+    ];
 
     protected $cats = [ 'status' => 'boolean' ];
 
