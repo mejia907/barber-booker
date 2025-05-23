@@ -26,7 +26,7 @@ class Service extends Model
     {
         return $this->image
             ? Storage::url($this->image)
-            : asset('assets/images/default-service.png'); // Imagen por defecto si no hay imagen
+            : asset('assets/images/default-service.png'); // Imagen por defecto
     }
 
     public function category(): BelongsTo

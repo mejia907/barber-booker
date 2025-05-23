@@ -323,5 +323,11 @@
     "New Permission": "Nuevo permiso",
     "Edit Permission": "Editar permiso",
     "Search Permission": "Buscar permiso",
-    "Permission": "Permiso"
+    "Permission": "Permiso",
+    "Employees": "Empleados",
+    "New Employee": "Nuevo empleado",
+    "Edit Employee": "Editar empleado",
+    "Search Employee": "Buscar empleado",
+    "Employee": "Empleado",
+    "Specialty": "Especialidad"
 }

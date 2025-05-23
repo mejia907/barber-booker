@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +20,13 @@ class Employee extends Model
         'biography',
         'image',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? Storage::url($this->image)
+            : asset('assets/images/default-employee.jpg'); // Imagen por defecto 
+    }
 
     public function specialty(): BelongsTo
     {

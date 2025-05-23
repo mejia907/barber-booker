@@ -39,18 +39,18 @@
         <x-shared.message-error />
 
         <!-- Grid de servicios -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
             @forelse ($services as $service)
                 <div
-                    class="bg-white dark:bg-neutral-800 rounded-2xl shadow-md border border-gray-100 dark:border-neutral-700 overflow-hidden flex flex-col transition duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-amber-50/20 dark:hover:bg-neutral-700/50">
+                    class="bg-white dark:bg-gray-700/30 rounded-2xl shadow-md border border-gray-100 dark:border-neutral-700 overflow-hidden flex flex-col transition duration-300 hover:shadow-lg hover:-translate-y-1 hover:bg-amber-50/20 dark:hover:bg-gray-700/50">
 
                     <!-- Imagen -->
                     @if ($service->image)
                         <img src="{{ asset('storage/' . $service->image) }}" alt="Imagen del servicio"
-                            class="w-full h-48 object-contain bg-gray-200 p-2 border-b dark:border-neutral-600">
+                            class="w-full h-52 object-cover bg-gray-200 p-0 border-b dark:border-neutral-600 rounded-t-2xl">
                     @else
                         <img src="{{ $service->image_url }}" alt="{{ $service->name }}"
-                            class="w-full h-48 object-contain bg-gray-200 p-2 border-b dark:border-neutral-600" />
+                            class="w-full h-52 object-cover bg-gray-200 p-0 border-b dark:border-neutral-600 rounded-t-2xl" />
                     @endif
 
                     <!-- Contenido -->
@@ -90,7 +90,7 @@
                         </div>
 
                         <!-- Acciones -->
-                        <div class="flex justify-between items-center pt-4 border-t dark:border-neutral-700 mt-3 pt-3">
+                        <div class="flex justify-between items-center border-t dark:border-neutral-700 mt-3 pt-3">
                             <a href="{{ route('services.edit', $service) }}"
                                 class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
                                 <x-lucide-pencil class="w-4 h-4" />
